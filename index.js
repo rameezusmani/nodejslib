@@ -5,23 +5,31 @@ function testSmsService(){
         twilio: {
             accound_sid: "xxxxx",
             auth_token: "xxxxxx",
+        },
+        http: {
+            enabled: true,
+            port: 9004
         }
     });
-    smsService.send({
-        from: "+1234567",
-        to: "+00000000",
-        body: "Hello world!"
-    });
+    // smsService.send({
+    //     from: "+1234567",
+    //     to: "+00000000",
+    //     body: "Hello world!"
+    // });
 }
 
 function testLoggingService(){
     const logging = require("./lib/logging");
     let loggingService = logging.createService({
-        transport: "mongodb",
+        transport: "console",
         mongodb: {
             host: "localhost",
             port: "27017",
             dbname: "nodejs",
+        },
+        http: {
+            enabled: true,
+            port: 9003,
         }
     });
     loggingService.write({severity: "normal",date_time: new Date().toISOString(),log_text: "hello world",attributes: {meta1: "meta1",meta2: "meta2"}});
@@ -37,18 +45,22 @@ function testEmailService(){
             domain: "xxx@yyy.com",
         },sendgrid: {
             key: "xxxxx",
+        },
+        http: {
+            enabled: true,
+            port: 9002
         }
-    })
-    emailService.send({
-        from: "xxxx",
-        to: "xxxxx",
-        subject: "xxxx",
-        body: "xxxxx",
     });
+    // emailService.send({
+    //     from: "xxxx",
+    //     to: "xxxxx",
+    //     subject: "xxxx",
+    //     body: "xxxxx",
+    // });
 }
 
-//testSmsService();
-//testEmailService();
+testSmsService();
+testEmailService();
 testLoggingService();
 
 console.log("Done!");
