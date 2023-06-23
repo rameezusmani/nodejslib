@@ -9,6 +9,10 @@ function testSmsService(){
         http: {
             enabled: true,
             port: 9004
+        },
+        queue: {
+            enabled: true,
+            name: "sms",
         }
     });
     // smsService.send({
@@ -30,6 +34,10 @@ function testLoggingService(){
         http: {
             enabled: true,
             port: 9003,
+        },
+        queue: {
+            enabled: true,
+            name: "logs2",
         }
     });
     loggingService.write({severity: "normal",date_time: new Date().toISOString(),log_text: "hello world",attributes: {meta1: "meta1",meta2: "meta2"}});
@@ -49,6 +57,10 @@ function testEmailService(){
         http: {
             enabled: true,
             port: 9002
+        },
+        queue: {
+            enabled: true,
+            name: "email",
         }
     });
     // emailService.send({
