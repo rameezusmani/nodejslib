@@ -103,6 +103,7 @@ let loggingService = logging.createService({
 Any service that is passed this http configuration will run on port 1001 exposing its endpoints
 
 # HTTP Endpoints exposed by each service
+
 ## Logging Service
 ### write (writes the log)
 > POST /write <br />
@@ -117,3 +118,26 @@ Any service that is passed this http configuration will run on port 1001 exposin
 ### send (send the sms)
 > POST /send <br />
 {"to":"+0000000","body":"this is sms body"}
+
+# Enable queue based messaging for a service
+To enable any service to listen for a queue or send message to a queue on broker, **queue** configuration element can be passed when creating service.
+```
+let loggingService = logging.createService({
+    transport: "console",
+    queue: {
+        enabled: true,
+        name: "logs", //name of the queue to listen
+    }
+})
+```
+## Disable the listening for messages on queue but keep the queue behavior enabled
+```
+let loggingService = logging.createService({
+    transport: "console",
+    queue: {
+        enabled: true,
+        name: "logs", //name of the queue to listen
+        receiver: false, //this will tell the service not to listen for messages from the queue
+    }
+})
+```
