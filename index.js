@@ -25,18 +25,19 @@ function testSmsService(){
 function testLoggingService(){
     const logging = require("./lib/logging");
     let loggingService = logging.createService({
-        transport: "console",
+        transport: "mongodb",
         mongodb: {
             host: "localhost",
             port: "27017",
-            dbname: "nodejs",
+            dbname: "testlib",
+            url: "mongodb+srv://rameez:atlas123@cluster0.bq80l.mongodb.net/",
         },
         http: {
-            enabled: true,
+            enabled: false,
             port: 9003,
         },
         queue: {
-            enabled: true,
+            enabled: false,
             name: "logs2",
         }
     });
@@ -71,8 +72,8 @@ function testEmailService(){
     // });
 }
 
-testSmsService();
-testEmailService();
+//testSmsService();
+//testEmailService();
 testLoggingService();
 
 console.log("Done!");

@@ -17,6 +17,15 @@ let loggingService = logging.createService({
         collection: "logs",
     },
 })
+OR you can use direct url for mongodb connection
+let loggingService = logging.createService({
+    transport: "mongodb",
+    mongodb: {
+        url: "mongodb+srv://username:password@abc.domain.net/"
+        dbname: "nodejs",
+        collection: "logs",
+    },
+})
 //using console as output
 let loggingService = logging.createService({
     transport: "console",
