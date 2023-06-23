@@ -30,7 +30,6 @@ function testLoggingService(){
             host: "localhost",
             port: "27017",
             dbname: "testlib",
-            url: "mongodb+srv://rameez:atlas123@cluster0.bq80l.mongodb.net/",
         },
         http: {
             enabled: false,
