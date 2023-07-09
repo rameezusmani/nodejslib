@@ -1,7 +1,7 @@
 # Logging Service
 ## Supported Transports
-- Console
-- MongoDB
+- console
+- mongodb
 ## Creating service
 ```
 const logging = require("./lib/logging");
@@ -43,8 +43,8 @@ loggingService.write({
 
 # Email Service
 ## Supported Transports
-- Mailgun
-- Sendgrid
+- mailgun
+- sendgrid
 ## Creating service
 ```
 const email = require("./lib/email");
@@ -77,7 +77,7 @@ emailService.send({
 
 # Sms Service
 ## Supported Transports
-- Twilio
+- twilio
 ## Creating service
 ```
 const sms = require("./lib/sms");
@@ -96,6 +96,37 @@ smsService.send({
     from: "+1234567",
     to: "+00000000",
     body: "Hello world!"
+});
+```
+# Cache Service
+## Supported Transports
+- memory
+- file
+## Creating service
+```
+const cache = require("./lib/cache");
+//using memory as transport
+let cacheService = cache.createService({
+    transport: "memory",
+});
+```
+## Adding value to cache
+```
+cacheService.put({
+    key: "hello",
+    value: "world"
+});
+```
+## Getting value from cache
+```
+cacheService.get({
+    key: "hello",
+});
+```
+## Removing value from cache
+```
+cacheService.remove({
+    key: "hello",
 });
 ```
 # Enable HTTP endpoints for a service
