@@ -71,8 +71,31 @@ function testEmailService(){
     // });
 }
 
+function testCacheService(){
+    const cache = require("./lib/cache");
+    let cacheService = cache.createService({
+        transport: "memory",
+        http: {
+            enabled: false,
+            port: 9003,
+        },
+        queue: {
+            enabled: false,
+            name: "cache",
+        }
+    });
+    cacheService.put({key:"hello",value:"world"}).then((res)=>{
+        console.log(res);
+        cacheService.get({key:"hello"}).then((val)=>{
+            console.log(val);
+        })
+    })
+    
+}
+
 //testSmsService();
 //testEmailService();
-testLoggingService();
+//testLoggingService();
+testCacheService();
 
 console.log("Done!");
